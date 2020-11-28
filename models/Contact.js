@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
-const USerSchema = mongoose.Schema({
+const ContactSchema = mongoose.Schema({
+  user: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'users'  
+  },
+  
   name: {
     type: String,
     required: true,
@@ -11,10 +16,13 @@ const USerSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-
-  password: {
+  phone: {
     type: String,
-    required: true,
+  },
+
+  type: {
+    type: String,
+    default: 'personal'
   },
 
   date: {
@@ -23,4 +31,4 @@ const USerSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('user', USerSchema);
+module.exports = mongoose.model('contact', ContactSchema);
